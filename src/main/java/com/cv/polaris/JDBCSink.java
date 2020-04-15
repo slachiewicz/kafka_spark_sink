@@ -8,8 +8,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.*;
 
-import static com.nrt.test.constants.Constants.*;
-import static com.nrt.test.utils.PropertiesConfig.getProp;
+import static com.cv.polaris.Constants.*;
 
 
 public class JDBCSink extends org.apache.spark.sql.ForeachWriter<Row> implements Serializable {
@@ -25,9 +24,9 @@ public class JDBCSink extends org.apache.spark.sql.ForeachWriter<Row> implements
         try {
             log.info("JDBC sink: In open method: " + new Timestamp(System.currentTimeMillis()));
             Class.forName(DRIVER);
-            connection = DriverManager.getConnection(getProp().getProperty("ora_host"),
-                    getProp().getProperty("user_name"),
-                    getProp().getProperty("user_passwd"));
+            connection = DriverManager.getConnection("ora_host",
+                    "user_name",
+                    "user_passwd");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             LOGGER.info("forName Error....");
@@ -36,10 +35,6 @@ public class JDBCSink extends org.apache.spark.sql.ForeachWriter<Row> implements
         } catch (SQLException e) {
             e.printStackTrace();
             log.info("JDBC sink: (SQL exception) Error occurred in open method: " + new Timestamp(System
-                    .currentTimeMillis()), e);
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.info("JDBC sink: (IO exception) Error occurred in open method: " + new Timestamp(System
                     .currentTimeMillis()), e);
         }
         LOGGER.info("Oracle Target connection :: " + System.nanoTime() + " ", connection);
