@@ -19,7 +19,7 @@ public final class Constants {
     public static final String CONFIG_PROPERTIES = "config.properties";
     public static final String KAFKA_KEY_SERIALIZER = "org.apache.kafka.common.serialization.StringSerializer";
     public static final String KAFKA_VALUE_SERIALIZER = "org.apache.kafka.common.serialization.ByteArraySerializer";
-
+    public static final int NUM_PARTITIONS_NEW = 36;
     public static final int THOUSAND = 1000;
 
     public static final String MD5_DIGEST = "MD5";
